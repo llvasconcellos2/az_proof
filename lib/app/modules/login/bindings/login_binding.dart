@@ -1,6 +1,6 @@
-import 'package:az_proof/app/data/providers/session_provider.dart';
 import 'package:get/get.dart';
 
+import '../../../data/providers/session_provider.dart';
 import '../controllers/login_controller.dart';
 
 class LoginBinding extends Bindings {

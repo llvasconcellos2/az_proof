@@ -1,6 +1,7 @@
-import 'package:az_proof/app/data/providers/session_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../data/providers/session_provider.dart';
 
 class LoginController extends GetxController {
   SessionProvider sessionProvider;

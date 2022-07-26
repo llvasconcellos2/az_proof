@@ -1,5 +1,6 @@
-import 'package:az_proof/app/data/preferences/user_preferences.dart';
 import 'package:get/get.dart';
+
+import '../../../data/preferences/user_preferences.dart';
 
 class HomeController extends GetxController {
   final user = UserPreferences().obs;

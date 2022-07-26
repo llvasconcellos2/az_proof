@@ -1,9 +1,9 @@
-import 'package:az_proof/app/data/preferences/user_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'app/data/preferences/user_preferences.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {
