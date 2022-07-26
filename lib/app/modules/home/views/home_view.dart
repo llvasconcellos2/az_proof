@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
+import 'totals_card.dart';
 
 class HomeView extends GetView<HomeController> {
   @override
@@ -96,8 +97,53 @@ class HomeView extends GetView<HomeController> {
                                 horizontal: 40,
                               ),
                               child: Container(
-                                  // O conteúdo do seu teste fica AQUI!
-                                  ),
+                                // O conteúdo do seu teste fica AQUI!
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 40,
+                                  vertical: 24,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Resumo da atividade',
+                                      style: TextStyle(
+                                        fontFamily: 'NunitoSans',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 19,
+                                        color: Color(0xFF59666F),
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                    SizedBox(height: 24),
+                                    Row(
+                                      children: [
+                                        TotalsCard(
+                                          icon: 'pedidos_dash.svg',
+                                          iconColor: Color(0xFFF4C8E1),
+                                          description: '200 Pedidos',
+                                          amount: 'R\$ 50.480,95',
+                                        ),
+                                        SizedBox(width: 16),
+                                        TotalsCard(
+                                          icon: 'vendas.svg',
+                                          iconColor: Color(0xFFB6EEDD),
+                                          description: '156 Vendas',
+                                          amount: 'R\$ 35.996,42',
+                                        ),
+                                        SizedBox(width: 16),
+                                        TotalsCard(
+                                          icon: 'calculo.svg',
+                                          iconColor: Color(0xFFC3E7F3),
+                                          description: 'Ticket médio',
+                                          amount: 'R\$ 230,74',
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                             Container(
                               color: Color(0xffF5F5F5),
