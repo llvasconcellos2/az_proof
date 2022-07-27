@@ -16,9 +16,9 @@ class AzApi {
 
   String error = '';
 
-  static String? _token = null;
-  static void set token(String? value) {
-    if (value != null && value.length > 0) {
+  static String? _token;
+  static set token(String? value) {
+    if (value != null && value.isNotEmpty) {
       _token = value;
     }
   }
@@ -43,7 +43,7 @@ class AzApi {
       if (_token != null) {
         options = options.copyWith(
             headers: Map<String, dynamic>.from(options.headers)
-              ..addAll({'Authorization': 'Bearer ${_token}'}));
+              ..addAll({'Authorization': 'Bearer $_token'}));
       }
       handler.next(options);
     }, onResponse: (response, handler) {
