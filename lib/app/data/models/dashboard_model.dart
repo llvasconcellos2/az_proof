@@ -225,10 +225,10 @@ class Seller {
 }
 
 class Payment {
-  int? amount;
-  int? originalAmount;
+  double? amount;
+  double? originalAmount;
   String? status;
-  int? discount;
+  double? discount;
   String? method;
   String? transactionId;
   int? installments;
@@ -277,7 +277,7 @@ class Delivery {
   String? type;
   String? trackId;
   String? trackUrl;
-  int? amount;
+  double? amount;
   String? deliveryForecast;
 
   Delivery({
@@ -332,7 +332,7 @@ class DeliveryHistory {
   String? type;
   String? trackId;
   String? trackUrl;
-  int? amount;
+  double? amount;
   String? deliveryForecast;
 
   DeliveryHistory({
@@ -425,16 +425,17 @@ class Product {
   String? sku;
   String? image;
   String? status;
-  Null price;
-  int? discount;
-  int? originalPrice;
+  double? price;
+  double? discount;
+  double? originalPrice;
   Rating? rating;
   bool? replacementCoupon;
   Coupon? coupon;
   Promotion? promotion;
-  int? amount;
+  double? amount;
   List<ProductHistory>? history;
   bool? active;
+  // TODO: check correct type for replacementProduct
   Null replacementProduct;
 
   Product({
@@ -469,7 +470,15 @@ class Product {
     price = json['price'];
     discount = json['discount'];
     originalPrice = json['original_price'];
-    rating = json['rating'] != null ? Rating.fromJson(json['rating']) : null;
+
+    if (json['rating'] != null) {
+      if (json['rating'] is int) {
+        rating = Rating(star: json['rating']);
+      } else {
+        rating = Rating.fromJson(json['rating']);
+      }
+    }
+
     replacementCoupon = json['replacement_coupon'];
     coupon = json['coupon'] != null ? Coupon.fromJson(json['coupon']) : null;
     promotion = json['promotion'] != null
@@ -547,8 +556,8 @@ class Rating {
 }
 
 class Promotion {
-  int? discount;
-  int? percentual;
+  double? discount;
+  double? percentual;
 
   Promotion({this.discount, this.percentual});
 
@@ -572,9 +581,9 @@ class ProductHistory {
   int? quantity;
   String? sku;
   String? image;
-  int? amount;
-  int? discount;
-  Null originalAmount;
+  double? amount;
+  double? discount;
+  double? originalAmount;
 
   ProductHistory({
     this.id,
@@ -619,7 +628,7 @@ class Coupon {
   String? id;
   String? code;
   String? name;
-  int? discount;
+  double? discount;
   String? type;
   String? application;
 
@@ -679,8 +688,8 @@ class Partner {
   String? id;
   String? name;
   String? doc;
-  int? salesCommission;
-  int? salesPercentual;
+  double? salesCommission;
+  double? salesPercentual;
 
   Partner({
     this.id,
