@@ -45,7 +45,7 @@ class DashboardModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['orders_total'] = ordersTotal;
     data['orders_count'] = ordersCount;
     data['sales_total'] = salesTotal;
@@ -136,7 +136,7 @@ class Order {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (customer != null) {
       data['customer'] = customer!.toJson();
     }
@@ -193,7 +193,7 @@ class Customer {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['doc'] = doc;
     data['email'] = email;
@@ -216,7 +216,7 @@ class Seller {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['email'] = email;
@@ -257,7 +257,7 @@ class Payment {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['amount'] = amount;
     data['original_amount'] = originalAmount;
     data['status'] = status;
@@ -309,7 +309,7 @@ class Delivery {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (history != null) {
       data['history'] = history!.map((v) => v.toJson()).toList();
     }
@@ -357,7 +357,7 @@ class DeliveryHistory {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (address != null) {
       data['address'] = address!.toJson();
     }
@@ -404,7 +404,7 @@ class Address {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['line1'] = line1;
     data['line2'] = line2;
     data['line3'] = line3;
@@ -436,7 +436,7 @@ class Product {
   List<ProductHistory>? history;
   bool? active;
   // TODO: check correct type for replacementProduct
-  Null replacementProduct;
+  String? replacementProduct;
 
   Product({
     this.id,
@@ -496,7 +496,7 @@ class Product {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['seller_id'] = sellerId;
     data['name'] = name;
@@ -545,7 +545,7 @@ class Rating {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['title'] = title;
     data['description'] = description;
     data['star'] = star;
@@ -567,7 +567,7 @@ class Promotion {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['discount'] = discount;
     data['percentual'] = percentual;
     return data;
@@ -610,7 +610,7 @@ class ProductHistory {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['seller_id'] = sellerId;
     data['name'] = name;
@@ -651,7 +651,7 @@ class Coupon {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['code'] = code;
     data['name'] = name;
@@ -676,7 +676,7 @@ class Invoice {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['createdAt'] = createdAt;
     data['status'] = status;
@@ -708,7 +708,7 @@ class Partner {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['doc'] = doc;
@@ -732,7 +732,7 @@ class Refund {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['bank'] = bank;
     data['agency'] = agency;
     data['account'] = account;
@@ -761,7 +761,7 @@ class ReplacementProduct {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['type'] = type;
     data['reason'] = reason;
     data['comment'] = comment;
@@ -791,7 +791,7 @@ class ReplacementProductProduct {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     if (attributes != null) {
       data['attributes'] = attributes!.map((v) => v.toJson()).toList();
@@ -811,7 +811,7 @@ class ReplacementProductAttribute {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     return data;
   }
