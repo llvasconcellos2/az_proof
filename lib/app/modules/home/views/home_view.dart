@@ -5,9 +5,24 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
-import 'totals_card.dart';
+import 'widgets/totals_card.dart';
 
-class HomeView extends GetView<HomeController> {
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final controller = Get.find<HomeController>();
+
+  @override
+  void initState() {
+    controller.getData();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +36,7 @@ class HomeView extends GetView<HomeController> {
                   color: Colors.black26.withOpacity(0),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0.0, 0.5),
+                  offset: const Offset(0.0, 0.5),
                 ),
               ],
             ),
@@ -31,7 +46,7 @@ class HomeView extends GetView<HomeController> {
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 20),
                     width: (kToolbarHeight * 1.1),
                     height: (kToolbarHeight * 1.1),
                     child: Center(
@@ -42,17 +57,17 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ListTile(
-                        textColor: Color(0xFF8F95B2),
-                        iconColor: Color(0xFF8F95B2),
+                        textColor: const Color(0xFF8F95B2),
+                        iconColor: const Color(0xFF8F95B2),
                         selected: true,
                         selectedColor: Colors.white,
-                        selectedTileColor: Color(0xFFFE7C6E),
+                        selectedTileColor: const Color(0xFFFE7C6E),
                         horizontalTitleGap: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
-                          side: BorderSide(
+                          side: const BorderSide(
                             color: Color(0xFFF5F5F5),
                           ),
                         ),
@@ -60,7 +75,7 @@ class HomeView extends GetView<HomeController> {
                           'assets/images/home.svg',
                           color: Colors.white,
                         ),
-                        title: Text(
+                        title: const Text(
                           'Dashboard',
                           style: TextStyle(
                             fontFamily: 'NunitoSans',
@@ -86,19 +101,19 @@ class HomeView extends GetView<HomeController> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            SizedBox(height: 80),
+                            const SizedBox(height: 80),
                             Container(
                               constraints: BoxConstraints(
                                 minHeight:
                                     MediaQuery.of(context).size.height - 135,
                               ),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                 vertical: 25,
                                 horizontal: 40,
                               ),
                               child: Container(
                                 // O conteúdo do seu teste fica AQUI!
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                   horizontal: 40,
                                   vertical: 24,
                                 ),
@@ -106,7 +121,7 @@ class HomeView extends GetView<HomeController> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Resumo da atividade',
                                       style: TextStyle(
                                         fontFamily: 'NunitoSans',
@@ -116,9 +131,9 @@ class HomeView extends GetView<HomeController> {
                                         height: 1.2,
                                       ),
                                     ),
-                                    SizedBox(height: 24),
+                                    const SizedBox(height: 24),
                                     Row(
-                                      children: [
+                                      children: const [
                                         TotalsCard(
                                           icon: 'pedidos_dash.svg',
                                           iconColor: Color(0xFFF4C8E1),
@@ -141,15 +156,58 @@ class HomeView extends GetView<HomeController> {
                                         ),
                                       ],
                                     ),
+                                    Obx(() {
+                                      if (controller.error != '') {
+                                        Future.delayed(
+                                            const Duration(milliseconds: 500),
+                                            () {
+                                          Get.showSnackbar(
+                                            GetSnackBar(
+                                              title: 'Aviso',
+                                              message: controller.error,
+                                              snackPosition: SnackPosition.TOP,
+                                              backgroundColor:
+                                                  const Color(0xFFFBB03B),
+                                              icon: const Icon(
+                                                Icons.warning,
+                                                color: Colors.white,
+                                              ),
+                                              isDismissible: true,
+                                              duration:
+                                                  const Duration(seconds: 4),
+                                              padding: const EdgeInsets.only(
+                                                top: 16,
+                                                left: 32,
+                                                right: 32,
+                                                bottom: 16,
+                                              ),
+                                            ),
+                                          );
+                                        });
+                                      }
+                                      if (controller.loading) {
+                                        return const SizedBox(
+                                          height: 50,
+                                          width: 50,
+                                          child: CircularProgressIndicator(
+                                            valueColor: AlwaysStoppedAnimation(
+                                              Color(0xFFFE7C6E),
+                                            ),
+                                          ),
+                                        );
+                                      } else {
+                                        return const SizedBox();
+                                      }
+                                    }),
                                   ],
                                 ),
                               ),
                             ),
                             Container(
-                              color: Color(0xffF5F5F5),
+                              color: const Color(0xffF5F5F5),
                               height: 56,
                               width: double.infinity,
-                              padding: EdgeInsets.symmetric(vertical: 21),
+                              padding: const EdgeInsets.symmetric(vertical: 21),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
@@ -158,8 +216,8 @@ class HomeView extends GetView<HomeController> {
                                     width: 30,
                                     height: 30,
                                   ),
-                                  SizedBox(width: 16),
-                                  Text(
+                                  const SizedBox(width: 16),
+                                  const Text(
                                     '® Desenvolvido por Azape',
                                     style: TextStyle(
                                       fontFamily: 'NunitoSans',
@@ -168,7 +226,7 @@ class HomeView extends GetView<HomeController> {
                                       color: Color(0xFF97A1A8),
                                     ),
                                   ),
-                                  SizedBox(width: 48),
+                                  const SizedBox(width: 48),
                                 ],
                               ),
                             ),
@@ -180,7 +238,7 @@ class HomeView extends GetView<HomeController> {
                 ),
                 Card(
                   elevation: 0.5,
-                  margin: EdgeInsets.only(top: 0, left: 0.5, right: 0),
+                  margin: const EdgeInsets.only(top: 0, left: 0.5, right: 0),
                   child: Container(
                     height: 80,
                     width: double.infinity,
@@ -191,7 +249,7 @@ class HomeView extends GetView<HomeController> {
                           color: Colors.black12.withOpacity(0.05),
                           spreadRadius: 1,
                           blurRadius: 1,
-                          offset: Offset(0.0, 0.5),
+                          offset: const Offset(0.0, 0.5),
                         ),
                       ],
                     ),
@@ -207,7 +265,7 @@ class HomeView extends GetView<HomeController> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'Olá,',
                                     style: TextStyle(
                                       fontFamily: 'NunitoSans',
@@ -221,7 +279,7 @@ class HomeView extends GetView<HomeController> {
                                       controller.userName.value
                                           .split(' ')
                                           .first,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontFamily: 'NunitoSans',
                                         color: Color(0xff59666F),
                                         fontSize: 19,
@@ -231,15 +289,15 @@ class HomeView extends GetView<HomeController> {
                                   ),
                                 ],
                               ),
-                              SizedBox(width: 16),
+                              const SizedBox(width: 16),
                               Container(
                                 width: 40,
                                 height: 40,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Color(0xFFFE7C6E),
                                 ),
-                                child: Center(
+                                child: const Center(
                                   child: Icon(
                                     FeatherIcons.user,
                                     color: Colors.white,
@@ -250,7 +308,7 @@ class HomeView extends GetView<HomeController> {
                             ],
                           ),
                         ),
-                        SizedBox(width: 40),
+                        const SizedBox(width: 40),
                       ],
                     ),
                   ),
