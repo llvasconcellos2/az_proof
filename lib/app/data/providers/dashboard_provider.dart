@@ -1,6 +1,7 @@
-import 'package:az_proof/app/data/models/dashboard_model.dart';
+import 'package:flutter/foundation.dart';
 
-import 'AzApi.dart';
+import '../models/dashboard_model.dart';
+import 'az_api.dart';
 
 class DashboardProvider {
   final AzApi api = AzApi();
@@ -14,9 +15,11 @@ class DashboardProvider {
       );
       return DashboardModel.fromJson(response.data);
     } catch (e, stacktrace) {
-      print(e);
-      print(e.runtimeType);
-      print(stacktrace);
+      if (kDebugMode) {
+        print(e);
+        print(e.runtimeType);
+        print(stacktrace);
+      }
       return DashboardModel();
     }
   }
