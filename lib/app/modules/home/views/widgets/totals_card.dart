@@ -39,10 +39,10 @@ class TotalsCard extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Text(
                 description,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'NunitoSans',
                   fontWeight: FontWeight.w400,
                   fontSize: 19,
@@ -50,10 +50,10 @@ class TotalsCard extends StatelessWidget {
                   height: 1.2,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 amount,
-                style: TextStyle(
+                style: const TextStyle(
                   fontFamily: 'NunitoSans',
                   fontWeight: FontWeight.w700,
                   fontSize: 19,
