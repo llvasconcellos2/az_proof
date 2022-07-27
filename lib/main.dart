@@ -18,10 +18,10 @@ void main() async {
       getPages: AppPages.routes,
       theme: ThemeData(
         fontFamily: 'Nunito Sans',
-        appBarTheme: AppBarTheme(color: Color(0xFFFE7C6E)),
+        appBarTheme: const AppBarTheme(color: Color(0xFFFE7C6E)),
       ),
       defaultTransition: Transition.noTransition,
-      transitionDuration: Duration(seconds: 0),
+      transitionDuration: const Duration(seconds: 0),
       locale: const Locale('pt', 'BR'),
       supportedLocales: const [Locale('pt', 'BR'), Locale('en', 'US')],
       localizationsDelegates: const [
@@ -37,5 +37,5 @@ Future<String> authenticate() async {
   final user = UserPreferences();
   String value = await user.getToken();
 
-  return value.trim().isEmpty ? Routes.LOGIN : Routes.HOME;
+  return value.trim().isEmpty ? Routes.kLogin : Routes.kHome;
 }

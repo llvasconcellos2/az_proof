@@ -7,6 +7,8 @@ import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends StatefulWidget {
+  const LoginView({Key? key}) : super(key: key);
+
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -24,7 +26,7 @@ class _LoginViewState extends State<LoginView> {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 SizedBox(
                   width: 80,
                   height: 80,
@@ -33,7 +35,7 @@ class _LoginViewState extends State<LoginView> {
                     clipBehavior: Clip.antiAlias,
                   ),
                 ),
-                SizedBox(height: 42),
+                const SizedBox(height: 42),
                 SizedBox(
                   width: 358,
                   child: Form(
@@ -53,14 +55,14 @@ class _LoginViewState extends State<LoginView> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               TextFormField(
-                                style: TextStyle(fontSize: 14),
+                                style: const TextStyle(fontSize: 14),
                                 controller: controller.emailController,
                                 focusNode: controller.emailFocus,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
-                                cursorColor: Color(0xFFFE7C6E),
+                                cursorColor: const Color(0xFFFE7C6E),
                                 validator: (value) =>
                                     controller.validateEmail(value ?? ''),
                                 onChanged: (value) =>
@@ -72,24 +74,24 @@ class _LoginViewState extends State<LoginView> {
                                 enabled: !controller.loading,
                                 decoration: InputDecoration(
                                   hintText: 'seuemail@exemplo.com',
-                                  hintStyle: TextStyle(fontSize: 14),
+                                  hintStyle: const TextStyle(fontSize: 14),
                                   labelStyle: const TextStyle(
                                     color: Colors.grey,
                                   ),
                                   hoverColor: Colors.transparent,
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 16,
                                     vertical: 18,
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0xFFE6E6E6),
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0xFFFE7C6E),
                                     ),
                                   ),
@@ -105,14 +107,14 @@ class _LoginViewState extends State<LoginView> {
                                         : null,
                                     color: !controller.checkEmailError
                                         ? null
-                                        : Color(0xFFE30F0F),
+                                        : const Color(0xFFE30F0F),
                                     size: 20,
                                   ),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 19),
+                          const SizedBox(height: 19),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
@@ -124,9 +126,9 @@ class _LoginViewState extends State<LoginView> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               TextFormField(
-                                style: TextStyle(fontSize: 14),
+                                style: const TextStyle(fontSize: 14),
                                 controller: controller.passwordController,
                                 focusNode: controller.passwordFocus,
                                 obscureText: controller.showPassword,
@@ -140,28 +142,28 @@ class _LoginViewState extends State<LoginView> {
                                   setState(() {});
                                 },
                                 keyboardType: TextInputType.visiblePassword,
-                                cursorColor: Color(0xFFFE7C6E),
+                                cursorColor: const Color(0xFFFE7C6E),
                                 enabled: !controller.loading,
                                 decoration: InputDecoration(
                                   hintText: '•••••••••',
-                                  hintStyle: TextStyle(fontSize: 14),
+                                  hintStyle: const TextStyle(fontSize: 14),
                                   labelStyle: const TextStyle(
                                     color: Colors.grey,
                                   ),
                                   hoverColor: Colors.transparent,
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 16,
                                     vertical: 18,
                                   ),
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0xFFE6E6E6),
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0xFFFE7C6E),
                                     ),
                                   ),
@@ -192,11 +194,11 @@ class _LoginViewState extends State<LoginView> {
                                             color: !controller
                                                     .passwordFocus.hasFocus
                                                 ? Colors.grey.shade600
-                                                : Color(0xFFFE7C6E),
+                                                : const Color(0xFFFE7C6E),
                                             size: 20,
                                           ),
                                         )
-                                      : Icon(
+                                      : const Icon(
                                           PhosphorIcons.x_circle_fill,
                                           color: Color(0xFFE30F0F),
                                           size: 20,
@@ -206,7 +208,7 @@ class _LoginViewState extends State<LoginView> {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: 56),
+                            padding: const EdgeInsets.only(top: 56),
                             child: Obx(
                               () => ElevatedButton(
                                 onPressed: () async {
@@ -222,20 +224,21 @@ class _LoginViewState extends State<LoginView> {
                                     );
 
                                     if (response) {
-                                      Get.offAndToNamed(Routes.HOME);
+                                      Get.offAndToNamed(Routes.kHome);
                                     } else {
                                       Get.showSnackbar(
                                         GetSnackBar(
                                           title: 'Aviso',
                                           message: controller.error,
                                           snackPosition: SnackPosition.TOP,
-                                          backgroundColor: Color(0xFFFBB03B),
-                                          icon: Icon(
+                                          backgroundColor:
+                                              const Color(0xFFFBB03B),
+                                          icon: const Icon(
                                             Icons.warning,
                                             color: Colors.white,
                                           ),
                                           isDismissible: true,
-                                          duration: Duration(seconds: 4),
+                                          duration: const Duration(seconds: 4),
                                           padding: const EdgeInsets.only(
                                             top: 16,
                                             left: 32,
@@ -248,24 +251,6 @@ class _LoginViewState extends State<LoginView> {
                                     controller.loading = false;
                                   }
                                 },
-                                child: controller.loading
-                                    ? const SizedBox(
-                                        child: CircularProgressIndicator(
-                                          valueColor: AlwaysStoppedAnimation(
-                                            Colors.white,
-                                          ),
-                                        ),
-                                        height: 18,
-                                        width: 18,
-                                      )
-                                    : const Text(
-                                        'Entrar',
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
@@ -275,12 +260,30 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                    Color(0xFFFE7C6E),
+                                    const Color(0xFFFE7C6E),
                                   ),
                                   fixedSize: MaterialStateProperty.all<Size>(
                                     const Size.fromHeight(48),
                                   ),
                                 ),
+                                child: controller.loading
+                                    ? const SizedBox(
+                                        height: 18,
+                                        width: 18,
+                                        child: CircularProgressIndicator(
+                                          valueColor: AlwaysStoppedAnimation(
+                                            Colors.white,
+                                          ),
+                                        ),
+                                      )
+                                    : const Text(
+                                        'Entrar',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                               ),
                             ),
                           ),
@@ -294,11 +297,11 @@ class _LoginViewState extends State<LoginView> {
             Expanded(
               child: Container(color: Colors.white),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(left: 24, bottom: 24),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: const Text(
+                child: Text(
                   '® Desenvolvido por Azape',
                   style: TextStyle(
                     fontSize: 12,

@@ -10,19 +10,19 @@ class LoginController extends GetxController {
 
   final _loading = false.obs;
   bool get loading => _loading.value;
-  void set loading(bool value) => _loading.value = value;
+  set loading(bool value) => _loading.value = value;
 
   final _showPassword = true.obs;
   bool get showPassword => _showPassword.value;
-  void set showPassword(bool value) => _showPassword.value = value;
+  set showPassword(bool value) => _showPassword.value = value;
 
   final _checkPasswordError = false.obs;
   bool get checkPasswordError => _checkPasswordError.value;
-  void set checkPasswordError(bool value) => _checkPasswordError.value = value;
+  set checkPasswordError(bool value) => _checkPasswordError.value = value;
 
   final _checkEmailError = false.obs;
   bool get checkEmailError => _checkEmailError.value;
-  void set checkEmailError(bool value) => _checkEmailError.value = value;
+  set checkEmailError(bool value) => _checkEmailError.value = value;
 
   final _formKey = GlobalKey<FormState>().obs;
   GlobalKey<FormState> get formKey => _formKey.value;

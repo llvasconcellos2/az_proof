@@ -83,7 +83,7 @@ class _HomeViewState extends State<HomeView> {
                             fontSize: 14,
                           ),
                         ),
-                        onTap: () => Get.offAndToNamed(Routes.HOME)),
+                        onTap: () => Get.offAndToNamed(Routes.kHome)),
                   )
                 ],
               ),

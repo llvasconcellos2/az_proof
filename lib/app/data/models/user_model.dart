@@ -20,14 +20,14 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final data = <String, dynamic>{};
 
-    _data['profile'] = (profile ?? Profile()).toJson();
-    _data['email'] = email;
-    _data['token'] = token;
-    _data['id'] = id;
+    data['profile'] = (profile ?? Profile()).toJson();
+    data['email'] = email;
+    data['token'] = token;
+    data['id'] = id;
 
-    return _data;
+    return data;
   }
 }
 
@@ -43,10 +43,10 @@ class Profile {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
+    final data = <String, dynamic>{};
 
-    _data['name'] = name;
+    data['name'] = name;
 
-    return _data;
+    return data;
   }
 }
