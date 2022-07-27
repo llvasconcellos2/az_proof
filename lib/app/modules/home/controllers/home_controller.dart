@@ -10,25 +10,29 @@ class HomeController extends GetxController {
   final DashboardProvider dashboardProvider;
   late DashboardModel dashboardData;
 
+  final _loading = false.obs;
+  bool get loading => _loading.value;
+  set loading(bool value) => _loading.value = value;
+
+  String get error => dashboardProvider.error;
+
   HomeController(this.dashboardProvider);
 
   @override
   void onInit() async {
     await getName();
     dashboardData = await dashboardProvider.getAll();
-    print(dashboardData.toJson());
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {}
-
   Future<void> getName() async {
     userName.value = await user.value.getName();
+  }
+
+  Future<bool> getData() async {
+    loading = true;
+    dashboardData = await dashboardProvider.getAll();
+    loading = false;
+    return true;
   }
 }
