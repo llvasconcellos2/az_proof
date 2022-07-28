@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -17,64 +18,69 @@ class _DataGridState extends State<DataGrid> {
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      border: const TableBorder(
-        horizontalInside: BorderSide(
-          width: 1,
-          color: Color(0xFFF5F5F5),
-          style: BorderStyle.solid,
+    return Column(
+      children: [
+        Table(
+          border: const TableBorder(
+            horizontalInside: BorderSide(
+              width: 1,
+              color: Color(0xFFF5F5F5),
+              style: BorderStyle.solid,
+            ),
+          ),
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          defaultColumnWidth: const FlexColumnWidth(),
+          columnWidths: const <int, TableColumnWidth>{
+            0: FixedColumnWidth(170),
+            1: FixedColumnWidth(110),
+            2: FlexColumnWidth(),
+            3: FixedColumnWidth(160),
+            // 4: FlexColumnWidth(),
+            // 5: FlexColumnWidth(),
+            // 6: FlexColumnWidth(),
+            // 7: FlexColumnWidth(),
+          },
+          children: <TableRow>[
+            DataGridHeader(content: const [
+              'ID Pedido',
+              'Data Criação',
+              'Nome do Cliente',
+              'CPF/CNPJ Cliente',
+              'Status Pedido',
+              'Status Pagamento',
+              'Método Pagamento',
+              'Total',
+            ]),
+            for (var order in controller.dashboardData.orders!)
+              TableRow(children: [
+                DataGridCell(
+                  '#${order.sId!}',
+                  isFirst: true,
+                  bgColor: Colors.white,
+                ),
+                DataGridCell(DateFormat('dd/MM/y').format(order.createdAt!)),
+                DataGridCell(
+                  order.customer!.name!,
+                  bgColor: Colors.white,
+                ),
+                DataGridCell(Utils.cpfCnpjFormat(order.customer!.doc!)),
+                DataGridCell(
+                  Utils.orderStatusFormat(order.status!),
+                  bgColor: Colors.white,
+                ),
+                DataGridCell(Utils.paymentStatusFormat(order.payment!.status!)),
+                DataGridCell(
+                  Utils.paymentMethodFormat(order.payment!.method!),
+                  bgColor: Colors.white,
+                ),
+                DataGridCell(
+                    NumberFormat.simpleCurrency(locale: 'pt_BR')
+                        .format(order.payment!.amount!),
+                    isLast: true),
+              ]),
+          ],
         ),
-      ),
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      defaultColumnWidth: const FlexColumnWidth(),
-      columnWidths: const <int, TableColumnWidth>{
-        0: FixedColumnWidth(170),
-        1: FixedColumnWidth(110),
-        2: FlexColumnWidth(),
-        3: FixedColumnWidth(160),
-        // 4: FlexColumnWidth(),
-        // 5: FlexColumnWidth(),
-        // 6: FlexColumnWidth(),
-        // 7: FlexColumnWidth(),
-      },
-      children: <TableRow>[
-        DataGridHeader(content: const [
-          'ID Pedido',
-          'Data Criação',
-          'Nome do Cliente',
-          'CPF/CNPJ Cliente',
-          'Status Pedido',
-          'Status Pagamento',
-          'Método Pagamento',
-          'Total',
-        ]),
-        for (var order in controller.dashboardData.orders!)
-          TableRow(children: [
-            DataGridCell(
-              '#${order.sId!}',
-              isFirst: true,
-              bgColor: Colors.white,
-            ),
-            DataGridCell(DateFormat('dd/MM/y').format(order.createdAt!)),
-            DataGridCell(
-              order.customer!.name!,
-              bgColor: Colors.white,
-            ),
-            DataGridCell(Utils.cpfCnpjFormat(order.customer!.doc!)),
-            DataGridCell(
-              Utils.orderStatusFormat(order.status!),
-              bgColor: Colors.white,
-            ),
-            DataGridCell(Utils.paymentStatusFormat(order.payment!.status!)),
-            DataGridCell(
-              Utils.paymentMethodFormat(order.payment!.method!),
-              bgColor: Colors.white,
-            ),
-            DataGridCell(
-                NumberFormat.simpleCurrency(locale: 'pt_BR')
-                    .format(order.payment!.amount!),
-                isLast: true),
-          ]),
+        const DataGridPaginationFooter(),
       ],
     );
   }
@@ -182,4 +188,211 @@ class DataGridHeader extends TableRow {
     LocalKey? key,
     List<Widget> cells,
   ) : super(key: key, children: cells);
+}
+
+class DataGridPaginationFooter extends StatelessWidget {
+  const DataGridPaginationFooter({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(8),
+        bottomRight: Radius.circular(8),
+      ),
+      child: Container(
+        height: 48,
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        color: const Color(0xFFF5F5F5),
+        child: Row(
+          children: [
+            const Icon(
+              FeatherIcons.chevronsLeft,
+              size: 24,
+              color: Color(0xFFFE7C6E),
+            ),
+            const SizedBox(width: 22),
+            const Icon(
+              FeatherIcons.chevronLeft,
+              size: 24,
+              color: Color(0xFFFE7C6E),
+            ),
+            const SizedBox(width: 36),
+            Row(
+              children: [
+                Container(
+                  width: 32,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Text(
+                    '1',
+                    style: TextStyle(
+                      fontFamily: 'NunitoSans',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(0xFF97A1A8),
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 21),
+                Container(
+                  width: 32,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFE7C6E),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Text(
+                    '2',
+                    style: TextStyle(
+                      fontFamily: 'NunitoSans',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      color: Colors.white,
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 21),
+                Container(
+                  width: 32,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Text(
+                    '3',
+                    style: TextStyle(
+                      fontFamily: 'NunitoSans',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(0xFF97A1A8),
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 21),
+                Container(
+                  width: 32,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Text(
+                    '4',
+                    style: TextStyle(
+                      fontFamily: 'NunitoSans',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(0xFF97A1A8),
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 21),
+                Container(
+                  width: 32,
+                  height: 32,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Text(
+                    '5',
+                    style: TextStyle(
+                      fontFamily: 'NunitoSans',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(0xFF97A1A8),
+                      height: 1.2,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(width: 36),
+            const Icon(
+              FeatherIcons.chevronRight,
+              size: 24,
+              color: Color(0xFFFE7C6E),
+            ),
+            const SizedBox(width: 22),
+            const Icon(
+              FeatherIcons.chevronsRight,
+              size: 24,
+              color: Color(0xFFFE7C6E),
+            ),
+            const SizedBox(width: 52),
+            const Text(
+              '1 de 10 páginas',
+              style: TextStyle(
+                fontFamily: 'NunitoSans',
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
+                color: Color(0xFF97A1A8),
+                height: 1.2,
+              ),
+            ),
+            const Spacer(),
+            const Text(
+              'Linhas por página',
+              style: TextStyle(
+                fontFamily: 'NunitoSans',
+                fontWeight: FontWeight.w400,
+                fontSize: 14,
+                color: Color(0xFF97A1A8),
+                height: 1.2,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 87,
+              height: 32,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(
+                  color: const Color(0xFFE6E6E6),
+                ),
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<int>(
+                  value: 6,
+                  icon: const Icon(FeatherIcons.chevronDown),
+                  style: const TextStyle(
+                    fontFamily: 'NunitoSans',
+                    fontWeight: FontWeight.w400,
+                    fontSize: 12,
+                    color: Color(0xFF97A1A8),
+                    height: 1.2,
+                  ),
+                  onChanged: (int? newValue) {
+                    // setState(() {
+                    //   dropdownValue = newValue!;
+                    // });
+                  },
+                  items: <int>[5, 6, 7, 8, 9, 10, 15, 20]
+                      .reversed
+                      .map<DropdownMenuItem<int>>((int value) {
+                    return DropdownMenuItem<int>(
+                      value: value,
+                      child: Text(NumberFormat('00').format(value)),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
