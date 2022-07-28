@@ -75,8 +75,8 @@ class Order {
   String? orderSellerId;
   String? status;
   Partner? partner;
-  String? createdAt;
-  String? updatedAt;
+  DateTime? createdAt;
+  DateTime? updatedAt;
   String? userId;
   Refund? refund;
   ReplacementProduct? replacementProduct;
@@ -126,8 +126,8 @@ class Order {
     status = json['status'];
     partner =
         json['partner'] != null ? Partner.fromJson(json['partner']) : null;
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
+    createdAt = DateTime.tryParse(json['createdAt']);
+    updatedAt = DateTime.tryParse(json['updatedAt']);
     userId = json['user_id'];
     refund = json['refund'] != null ? Refund.fromJson(json['refund']) : null;
     replacementProduct = json['replacement_product'] != null
@@ -164,8 +164,8 @@ class Order {
     if (partner != null) {
       data['partner'] = partner!.toJson();
     }
-    data['createdAt'] = createdAt;
-    data['updatedAt'] = updatedAt;
+    data['createdAt'] = createdAt?.toIso8601String();
+    data['updatedAt'] = updatedAt?.toIso8601String();
     data['user_id'] = userId;
     if (refund != null) {
       data['refund'] = refund!.toJson();
@@ -232,7 +232,7 @@ class Payment {
   String? method;
   String? transactionId;
   int? installments;
-  String? date;
+  DateTime? date;
 
   Payment({
     this.amount,
@@ -253,7 +253,7 @@ class Payment {
     method = json['method'];
     transactionId = json['transaction_id'];
     installments = json['installments'];
-    date = json['date'];
+    date = DateTime.tryParse(json['date']);
   }
 
   Map<String, dynamic> toJson() {
@@ -265,7 +265,7 @@ class Payment {
     data['method'] = method;
     data['transaction_id'] = transactionId;
     data['installments'] = installments;
-    data['date'] = date;
+    data['date'] = date?.toIso8601String();
     return data;
   }
 }
@@ -278,7 +278,7 @@ class Delivery {
   String? trackId;
   String? trackUrl;
   double? amount;
-  String? deliveryForecast;
+  DateTime? deliveryForecast;
 
   Delivery({
     this.history,
@@ -305,7 +305,7 @@ class Delivery {
     trackId = json['track_id'];
     trackUrl = json['track_url'];
     amount = json['amount'];
-    deliveryForecast = json['delivery_forecast'];
+    deliveryForecast = DateTime.tryParse(json['delivery_forecast']);
   }
 
   Map<String, dynamic> toJson() {
@@ -321,7 +321,7 @@ class Delivery {
     data['track_id'] = trackId;
     data['track_url'] = trackUrl;
     data['amount'] = amount;
-    data['delivery_forecast'] = deliveryForecast;
+    data['delivery_forecast'] = deliveryForecast?.toIso8601String();
     return data;
   }
 }
@@ -333,7 +333,7 @@ class DeliveryHistory {
   String? trackId;
   String? trackUrl;
   double? amount;
-  String? deliveryForecast;
+  DateTime? deliveryForecast;
 
   DeliveryHistory({
     this.address,
@@ -353,7 +353,7 @@ class DeliveryHistory {
     trackId = json['track_id'];
     trackUrl = json['track_url'];
     amount = json['amount'];
-    deliveryForecast = json['delivery_forecast'];
+    deliveryForecast = DateTime.tryParse(json['delivery_forecast']);
   }
 
   Map<String, dynamic> toJson() {
@@ -366,7 +366,7 @@ class DeliveryHistory {
     data['track_id'] = trackId;
     data['track_url'] = trackUrl;
     data['amount'] = amount;
-    data['delivery_forecast'] = deliveryForecast;
+    data['delivery_forecast'] = deliveryForecast?.toIso8601String();
     return data;
   }
 }
@@ -531,7 +531,7 @@ class Rating {
   String? title;
   String? description;
   int? star;
-  String? date;
+  DateTime? date;
   bool? active;
 
   Rating({this.title, this.description, this.star, this.date, this.active});
@@ -540,7 +540,7 @@ class Rating {
     title = json['title'];
     description = json['description'];
     star = json['star'];
-    date = json['date'];
+    date = DateTime.tryParse(json['date']);
     active = json['active'];
   }
 
@@ -549,7 +549,7 @@ class Rating {
     data['title'] = title;
     data['description'] = description;
     data['star'] = star;
-    data['date'] = date;
+    data['date'] = date?.toIso8601String();
     data['active'] = active;
     return data;
   }
@@ -664,21 +664,21 @@ class Coupon {
 
 class Invoice {
   String? id;
-  String? createdAt;
+  DateTime? createdAt;
   String? status;
 
   Invoice({this.id, this.createdAt, this.status});
 
   Invoice.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    createdAt = json['createdAt'];
+    createdAt = DateTime.tryParse(json['createdAt']);
     status = json['status'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['createdAt'] = createdAt;
+    data['createdAt'] = createdAt?.toIso8601String();
     data['status'] = status;
     return data;
   }

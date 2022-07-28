@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../../controllers/home_controller.dart';
 
@@ -27,7 +28,7 @@ class _DataGridState extends State<DataGrid> {
       defaultColumnWidth: const FlexColumnWidth(),
       columnWidths: const <int, TableColumnWidth>{
         0: FixedColumnWidth(170),
-        // 1: FlexColumnWidth(),
+        1: FixedColumnWidth(110),
         // 2: FlexColumnWidth(),
         // 3: FlexColumnWidth(),
         // 4: FlexColumnWidth(),
@@ -53,7 +54,7 @@ class _DataGridState extends State<DataGrid> {
               isFirst: true,
               bgColor: Colors.white,
             ),
-            DataGridCell(order.createdAt!),
+            DataGridCell(DateFormat('dd/MM/y').format(order.createdAt!)),
             DataGridCell(
               order.customer!.name!,
               bgColor: Colors.white,
