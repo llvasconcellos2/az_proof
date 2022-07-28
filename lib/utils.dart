@@ -16,4 +16,46 @@ class Utils {
       return docNumber;
     }
   }
+
+  static String orderStatusFormat(String input) {
+    input = input.toLowerCase();
+    switch (input) {
+      case 'canceled':
+        return 'Cancelado';
+      case 'paid':
+        return 'Pago';
+      case 'pending':
+        return 'Pendente';
+      default:
+        return input;
+    }
+  }
+
+  static String paymentStatusFormat(String input) {
+    input = input.toLowerCase();
+    switch (input) {
+      case 'succeeded':
+        return 'Êxito';
+      case 'pending':
+        return 'Pendente';
+      default:
+        return input;
+    }
+  }
+
+  static String paymentMethodFormat(String input) {
+    input = input.toLowerCase();
+    switch (input) {
+      case 'pix':
+        return 'Pix';
+      case 'credit':
+        return 'Crédito a vista';
+      case 'credit_installments':
+        return 'Crédito a prazo';
+      case 'boleto':
+        return 'Boleto';
+      default:
+        return input;
+    }
+  }
 }

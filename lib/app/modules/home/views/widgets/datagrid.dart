@@ -62,15 +62,18 @@ class _DataGridState extends State<DataGrid> {
             ),
             DataGridCell(Utils.cpfCnpjFormat(order.customer!.doc!)),
             DataGridCell(
-              order.status!,
+              Utils.orderStatusFormat(order.status!),
               bgColor: Colors.white,
             ),
-            DataGridCell(order.payment!.status!),
+            DataGridCell(Utils.paymentStatusFormat(order.payment!.status!)),
             DataGridCell(
-              order.payment!.method!,
+              Utils.paymentMethodFormat(order.payment!.method!),
               bgColor: Colors.white,
             ),
-            DataGridCell(order.payment!.amount!.toString(), isLast: true),
+            DataGridCell(
+                NumberFormat.simpleCurrency(locale: 'pt_BR')
+                    .format(order.payment!.amount!),
+                isLast: true),
           ]),
       ],
     );
@@ -138,7 +141,7 @@ class DataGridCell extends StatelessWidget {
               color: textColor,
               fontFamily: 'NunitoSans',
               fontWeight: FontWeight.w400,
-              fontSize: 14,
+              fontSize: isHeader ? 14 : 12,
             ),
           ),
         ),
