@@ -1,6 +1,6 @@
-import 'package:az_proof/app/data/models/dashboard_model.dart';
 import 'package:get/get.dart';
 
+import '../../../data/models/dashboard_model.dart';
 import '../../../data/preferences/user_preferences.dart';
 import '../../../data/providers/dashboard_provider.dart';
 

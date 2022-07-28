@@ -53,7 +53,9 @@ class AzApi {
         // When statusCode is 400 response is HTML
         error = extractMessageFromHTML(response.data);
       } else {
-        error = response.data['message'];
+        if (response.data['error']) {
+          error = response.data['message'];
+        }
       }
       handler.reject(DioError(
         error: error,

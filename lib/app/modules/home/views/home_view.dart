@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
+import 'widgets/datagrid.dart';
 import 'widgets/totals_card.dart';
 
 class HomeView extends StatefulWidget {
@@ -156,6 +157,18 @@ class _HomeViewState extends State<HomeView> {
                                         ),
                                       ],
                                     ),
+                                    const SizedBox(height: 24),
+                                    const Text(
+                                      'Pedidos',
+                                      style: TextStyle(
+                                        fontFamily: 'NunitoSans',
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 19,
+                                        color: Color(0xFF59666F),
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 24),
                                     Obx(() {
                                       if (controller.error != '') {
                                         Future.delayed(
@@ -186,17 +199,24 @@ class _HomeViewState extends State<HomeView> {
                                         });
                                       }
                                       if (controller.loading) {
-                                        return const SizedBox(
-                                          height: 50,
-                                          width: 50,
-                                          child: CircularProgressIndicator(
-                                            valueColor: AlwaysStoppedAnimation(
-                                              Color(0xFFFE7C6E),
+                                        var size =
+                                            MediaQuery.of(context).size.height *
+                                                0.4;
+                                        return Center(
+                                          child: SizedBox(
+                                            height: size,
+                                            width: size,
+                                            child:
+                                                const CircularProgressIndicator(
+                                              valueColor:
+                                                  AlwaysStoppedAnimation(
+                                                Color(0xFFFE7C6E),
+                                              ),
                                             ),
                                           ),
                                         );
                                       } else {
-                                        return const SizedBox();
+                                        return const DataGrid();
                                       }
                                     }),
                                   ],
