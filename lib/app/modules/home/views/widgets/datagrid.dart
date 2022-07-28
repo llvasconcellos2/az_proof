@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../utils.dart';
 import '../../controllers/home_controller.dart';
 
 class DataGrid extends StatefulWidget {
@@ -29,8 +30,8 @@ class _DataGridState extends State<DataGrid> {
       columnWidths: const <int, TableColumnWidth>{
         0: FixedColumnWidth(170),
         1: FixedColumnWidth(110),
-        // 2: FlexColumnWidth(),
-        // 3: FlexColumnWidth(),
+        2: FlexColumnWidth(),
+        3: FixedColumnWidth(160),
         // 4: FlexColumnWidth(),
         // 5: FlexColumnWidth(),
         // 6: FlexColumnWidth(),
@@ -41,7 +42,7 @@ class _DataGridState extends State<DataGrid> {
           'ID Pedido',
           'Data Criação',
           'Nome do Cliente',
-          'CPF Cliente',
+          'CPF/CNPJ Cliente',
           'Status Pedido',
           'Status Pagamento',
           'Método Pagamento',
@@ -59,7 +60,7 @@ class _DataGridState extends State<DataGrid> {
               order.customer!.name!,
               bgColor: Colors.white,
             ),
-            DataGridCell(order.customer!.doc!),
+            DataGridCell(Utils.cpfCnpjFormat(order.customer!.doc!)),
             DataGridCell(
               order.status!,
               bgColor: Colors.white,
