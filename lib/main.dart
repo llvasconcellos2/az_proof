@@ -21,8 +21,8 @@ void main() async {
         fontFamily: 'Nunito Sans',
         appBarTheme: const AppBarTheme(color: AzColors.red),
       ),
-      defaultTransition: Transition.noTransition,
-      transitionDuration: const Duration(seconds: 0),
+      defaultTransition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 500),
       locale: const Locale('pt', 'BR'),
       supportedLocales: const [Locale('pt', 'BR'), Locale('en', 'US')],
       localizationsDelegates: const [

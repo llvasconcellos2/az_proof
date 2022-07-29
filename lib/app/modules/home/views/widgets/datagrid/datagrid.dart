@@ -98,6 +98,7 @@ class DataGrid extends StatelessWidget {
             columnWidths: const <int, TableColumnWidth>{
               0: FixedColumnWidth(170),
               1: FixedColumnWidth(110),
+              2: MaxColumnWidth(FixedColumnWidth(160), FlexColumnWidth()),
               3: FixedColumnWidth(160),
               4: FixedColumnWidth(120),
               5: FixedColumnWidth(140),

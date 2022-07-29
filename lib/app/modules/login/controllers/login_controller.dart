@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils.dart';
 import '../../../data/providers/session_provider.dart';
+import '../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
   SessionProvider sessionProvider;
 
   LoginController(this.sessionProvider);
+
+  String get error => sessionProvider.error;
 
   final _loading = false.obs;
   bool get loading => _loading.value;
@@ -71,5 +75,21 @@ class LoginController extends GetxController {
     return await sessionProvider.signInProvider(email, password);
   }
 
-  String get error => sessionProvider.error;
+  void submit() async {
+    if (formKey.currentState != null && formKey.currentState!.validate()) {
+      loading = true;
+
+      bool response = await signInController(
+        emailController.text,
+        passwordController.text,
+      );
+
+      if (response) {
+        Get.offAndToNamed(Routes.kHome);
+      } else {
+        Utils.showSnackbar(error);
+      }
+      loading = false;
+    }
+  }
 }

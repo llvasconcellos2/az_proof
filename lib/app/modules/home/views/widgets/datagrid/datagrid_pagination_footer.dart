@@ -48,7 +48,9 @@ class DataGridPaginationFooter extends StatelessWidget {
                 for (var i = 1; i <= controller.totalPages.value; i++) {
                   row.add(MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: Container(
+                    child: AnimatedContainer(
+                      curve: Curves.fastOutSlowIn,
+                      duration: const Duration(seconds: 1),
                       width: 32,
                       height: 32,
                       alignment: Alignment.center,

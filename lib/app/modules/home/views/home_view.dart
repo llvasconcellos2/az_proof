@@ -52,9 +52,12 @@ class _HomeViewState extends State<HomeView> {
                     width: (kToolbarHeight * 1.1),
                     height: (kToolbarHeight * 1.1),
                     child: Center(
-                      child: SvgPicture.asset(
-                        'assets/images/reduzido.svg',
-                        clipBehavior: Clip.antiAlias,
+                      child: Hero(
+                        tag: 'logo',
+                        child: SvgPicture.asset(
+                          'assets/images/reduzido.svg',
+                          clipBehavior: Clip.antiAlias,
+                        ),
                       ),
                     ),
                   ),
@@ -114,7 +117,9 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
                                   children: [
                                     Obx(() {
                                       if (!controller.loading &&
@@ -123,7 +128,7 @@ class _HomeViewState extends State<HomeView> {
                                               null) {
                                         return Totals();
                                       } else {
-                                        return const SizedBox();
+                                        return const SizedBox(height: 230);
                                       }
                                     }),
                                     const SizedBox(height: 24),
@@ -131,18 +136,34 @@ class _HomeViewState extends State<HomeView> {
                                       if (controller.loading) {
                                         var size =
                                             MediaQuery.of(context).size.height *
-                                                0.2;
+                                                0.14;
                                         return Center(
-                                          child: SizedBox(
-                                            height: size,
-                                            width: size,
-                                            child:
-                                                const CircularProgressIndicator(
-                                              valueColor:
-                                                  AlwaysStoppedAnimation(
-                                                AzColors.red,
+                                          child: Stack(
+                                            children: [
+                                              SizedBox(
+                                                height: size,
+                                                width: size,
+                                                child: Center(
+                                                  child: Text(
+                                                    'Carregando...',
+                                                    style: AzTypography
+                                                        .nunitodeepBlueGray,
+                                                  ),
+                                                ),
                                               ),
-                                            ),
+                                              SizedBox(
+                                                height: size,
+                                                width: size,
+                                                child:
+                                                    const CircularProgressIndicator(
+                                                  strokeWidth: 8,
+                                                  valueColor:
+                                                      AlwaysStoppedAnimation(
+                                                    AzColors.red,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         );
                                       } else if (controller
@@ -161,10 +182,27 @@ class _HomeViewState extends State<HomeView> {
                               color: AzColors.whiteSmoke,
                               height: 56,
                               width: double.infinity,
-                              padding: const EdgeInsets.symmetric(vertical: 21),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 21,
+                                horizontal: 40,
+                              ),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
+                                  Text(
+                                    'Termos de Uso',
+                                    style: AzTypography.nunitoBlueGray.copyWith(
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 32),
+                                  Text(
+                                    'Politica de Privacidade',
+                                    style: AzTypography.nunitoBlueGray.copyWith(
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                  const Spacer(),
                                   SvgPicture.asset(
                                     'assets/images/logo_azape.svg',
                                     width: 30,
@@ -175,7 +213,6 @@ class _HomeViewState extends State<HomeView> {
                                     '® Desenvolvido por Azape',
                                     style: AzTypography.nunitoBlueGray,
                                   ),
-                                  const SizedBox(width: 48),
                                 ],
                               ),
                             ),
@@ -207,7 +244,7 @@ class _HomeViewState extends State<HomeView> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: controller.logout,
                           child: Row(
                             children: [
                               Column(

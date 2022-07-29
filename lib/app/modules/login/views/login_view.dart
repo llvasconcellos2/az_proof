@@ -3,9 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils.dart';
 import '../../../az_theme.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends StatefulWidget {
@@ -32,9 +30,12 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   width: 80,
                   height: 80,
-                  child: SvgPicture.asset(
-                    'assets/images/reduzido.svg',
-                    clipBehavior: Clip.antiAlias,
+                  child: Hero(
+                    tag: 'logo',
+                    child: SvgPicture.asset(
+                      'assets/images/reduzido.svg',
+                      clipBehavior: Clip.antiAlias,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 42),
@@ -143,6 +144,9 @@ class _LoginViewState extends State<LoginView> {
                                   controller.setFocusOnPassword();
                                   setState(() {});
                                 },
+                                onFieldSubmitted: (value) {
+                                  controller.submit();
+                                },
                                 keyboardType: TextInputType.visiblePassword,
                                 cursorColor: AzColors.red,
                                 enabled: !controller.loading,
@@ -214,24 +218,7 @@ class _LoginViewState extends State<LoginView> {
                             child: Obx(
                               () => ElevatedButton(
                                 onPressed: () async {
-                                  if (controller.formKey.currentState != null &&
-                                      controller.formKey.currentState!
-                                          .validate()) {
-                                    controller.loading = true;
-
-                                    bool response =
-                                        await controller.signInController(
-                                      controller.emailController.text,
-                                      controller.passwordController.text,
-                                    );
-
-                                    if (response) {
-                                      Get.offAndToNamed(Routes.kHome);
-                                    } else {
-                                      Utils.showSnackbar(controller.error);
-                                    }
-                                    controller.loading = false;
-                                  }
+                                  controller.submit();
                                 },
                                 style: ButtonStyle(
                                   shape: MaterialStateProperty.all<

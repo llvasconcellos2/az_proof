@@ -4,6 +4,7 @@ import '../../../../utils.dart';
 import '../../../data/models/dashboard_model.dart';
 import '../../../data/preferences/user_preferences.dart';
 import '../../../data/providers/dashboard_provider.dart';
+import '../../../routes/app_pages.dart';
 
 class HomeController extends GetxController {
   final user = UserPreferences().obs;
@@ -53,5 +54,10 @@ class HomeController extends GetxController {
 
   Future<DashboardModel> getData() async {
     return await dashboardProvider.getAll();
+  }
+
+  void logout() {
+    UserPreferences().deleteUser();
+    Get.offAndToNamed(Routes.kLogin);
   }
 }
