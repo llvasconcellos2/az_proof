@@ -10,8 +10,8 @@ class DataGridHeader extends TableRow {
 
   factory DataGridHeader({
     content,
-    evensColor = AzTheme.lightRed,
-    oddsColor = AzTheme.red,
+    evensColor = AzColors.lightRed,
+    oddsColor = AzColors.red,
     LocalKey? key,
   }) {
     var cells = <Widget>[];

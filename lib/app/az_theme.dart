@@ -1,6 +1,6 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
-class AzTheme {
+class AzColors {
   static const lightRed = Color(0xFFFE877A);
   static const red = Color(0xFFFE7C6E);
   static const deepRed = Color(0xFFE30F0F);
@@ -14,4 +14,20 @@ class AzTheme {
   static const lightGreen = Color(0xFFB6EEDD);
   static const lightCyan = Color(0xFFC3E7F3);
   static const violet = Color(0xFF8F95B2);
+}
+
+class AzTypography {
+  static TextStyle nunito = const TextStyle(
+    fontFamily: 'NunitoSans',
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+  );
+
+  static TextStyle nunitoBlueGray = nunito.copyWith(
+    color: AzColors.blueGray,
+  );
+
+  static TextStyle nunitodeepBlueGray = nunito.copyWith(
+    color: AzColors.deepBlueGray,
+  );
 }

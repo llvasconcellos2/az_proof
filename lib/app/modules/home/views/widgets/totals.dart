@@ -21,7 +21,7 @@ class Totals extends StatelessWidget {
             fontFamily: 'NunitoSans',
             fontWeight: FontWeight.w400,
             fontSize: 19,
-            color: AzTheme.deepBlueGray,
+            color: AzColors.deepBlueGray,
             height: 1.2,
           ),
         ),
@@ -30,21 +30,21 @@ class Totals extends StatelessWidget {
           children: [
             TotalsCard(
               icon: 'pedidos_dash.svg',
-              iconColor: AzTheme.lightPink,
+              iconColor: AzColors.lightPink,
               description: '${controller.dashboardData.ordersCount} Pedidos',
               amount: controller.dashboardData.ordersTotal!,
             ),
             const SizedBox(width: 16),
             TotalsCard(
               icon: 'vendas.svg',
-              iconColor: AzTheme.lightGreen,
+              iconColor: AzColors.lightGreen,
               description: '${controller.dashboardData.salesCount} Vendas',
               amount: controller.dashboardData.salesTotal!,
             ),
             const SizedBox(width: 16),
             TotalsCard(
               icon: 'calculo.svg',
-              iconColor: AzTheme.lightCyan,
+              iconColor: AzColors.lightCyan,
               description: 'Ticket médio',
               amount: controller.dashboardData.averageTicket!,
             ),

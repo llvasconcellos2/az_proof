@@ -17,19 +17,19 @@ class DataGridPaginationFooter extends StatelessWidget {
       child: Container(
         height: 48,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        color: AzTheme.whiteSmoke,
+        color: AzColors.whiteSmoke,
         child: Row(
           children: [
             const Icon(
               FeatherIcons.chevronsLeft,
               size: 24,
-              color: AzTheme.red,
+              color: AzColors.red,
             ),
             const SizedBox(width: 22),
             const Icon(
               FeatherIcons.chevronLeft,
               size: 24,
-              color: AzTheme.red,
+              color: AzColors.red,
             ),
             const SizedBox(width: 36),
             Row(
@@ -47,7 +47,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                       fontFamily: 'NunitoSans',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      color: AzTheme.gray,
+                      color: AzColors.gray,
                       height: 1.2,
                     ),
                   ),
@@ -58,7 +58,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                   height: 32,
                   alignment: Alignment.center,
                   decoration: const BoxDecoration(
-                    color: AzTheme.red,
+                    color: AzColors.red,
                     shape: BoxShape.circle,
                   ),
                   child: const Text(
@@ -86,7 +86,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                       fontFamily: 'NunitoSans',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      color: AzTheme.gray,
+                      color: AzColors.gray,
                       height: 1.2,
                     ),
                   ),
@@ -105,7 +105,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                       fontFamily: 'NunitoSans',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      color: AzTheme.gray,
+                      color: AzColors.gray,
                       height: 1.2,
                     ),
                   ),
@@ -124,7 +124,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                       fontFamily: 'NunitoSans',
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
-                      color: AzTheme.blueGray,
+                      color: AzColors.blueGray,
                       height: 1.2,
                     ),
                   ),
@@ -135,13 +135,13 @@ class DataGridPaginationFooter extends StatelessWidget {
             const Icon(
               FeatherIcons.chevronRight,
               size: 24,
-              color: AzTheme.red,
+              color: AzColors.red,
             ),
             const SizedBox(width: 22),
             const Icon(
               FeatherIcons.chevronsRight,
               size: 24,
-              color: AzTheme.red,
+              color: AzColors.red,
             ),
             const SizedBox(width: 52),
             const Text(
@@ -150,7 +150,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                 fontFamily: 'NunitoSans',
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
-                color: AzTheme.gray,
+                color: AzColors.gray,
                 height: 1.2,
               ),
             ),
@@ -161,7 +161,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                 fontFamily: 'NunitoSans',
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
-                color: AzTheme.gray,
+                color: AzColors.gray,
                 height: 1.2,
               ),
             ),
@@ -174,7 +174,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(
-                  color: AzTheme.whiteGray,
+                  color: AzColors.whiteGray,
                 ),
               ),
               child: DropdownButtonHideUnderline(
@@ -185,7 +185,7 @@ class DataGridPaginationFooter extends StatelessWidget {
                     fontFamily: 'NunitoSans',
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
-                    color: AzTheme.gray,
+                    color: AzColors.gray,
                     height: 1.2,
                   ),
                   onChanged: (int? newValue) {

@@ -19,7 +19,7 @@ void main() async {
       getPages: AppPages.routes,
       theme: ThemeData(
         fontFamily: 'Nunito Sans',
-        appBarTheme: const AppBarTheme(color: AzTheme.red),
+        appBarTheme: const AppBarTheme(color: AzColors.red),
       ),
       defaultTransition: Transition.noTransition,
       transitionDuration: const Duration(seconds: 0),

@@ -69,7 +69,7 @@ class Utils {
         title: 'Aviso',
         message: message,
         snackPosition: SnackPosition.TOP,
-        backgroundColor: AzTheme.orange,
+        backgroundColor: AzColors.orange,
         icon: const Icon(
           Icons.warning,
           color: Colors.white,

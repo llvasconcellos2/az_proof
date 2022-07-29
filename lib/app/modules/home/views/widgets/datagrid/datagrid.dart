@@ -31,7 +31,7 @@ class _DataGridState extends State<DataGrid> {
             fontFamily: 'NunitoSans',
             fontWeight: FontWeight.w400,
             fontSize: 19,
-            color: AzTheme.deepBlueGray,
+            color: AzColors.deepBlueGray,
             height: 1.2,
           ),
         ),
@@ -40,7 +40,7 @@ class _DataGridState extends State<DataGrid> {
           border: const TableBorder(
             horizontalInside: BorderSide(
               width: 1,
-              color: AzTheme.whiteSmoke,
+              color: AzColors.whiteSmoke,
               style: BorderStyle.solid,
             ),
           ),

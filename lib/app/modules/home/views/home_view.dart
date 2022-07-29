@@ -62,30 +62,23 @@ class _HomeViewState extends State<HomeView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ListTile(
-                        textColor: AzTheme.red,
-                        iconColor: AzTheme.red,
+                        textColor: AzColors.red,
+                        iconColor: AzColors.red,
                         selected: true,
                         selectedColor: Colors.white,
-                        selectedTileColor: AzTheme.red,
+                        selectedTileColor: AzColors.red,
                         horizontalTitleGap: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: const BorderSide(
-                            color: AzTheme.whiteSmoke,
+                            color: AzColors.whiteSmoke,
                           ),
                         ),
                         leading: SvgPicture.asset(
                           'assets/images/home.svg',
                           color: Colors.white,
                         ),
-                        title: const Text(
-                          'Dashboard',
-                          style: TextStyle(
-                            fontFamily: 'NunitoSans',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                          ),
-                        ),
+                        title: Text('Dashboard', style: AzTypography.nunito),
                         onTap: () => Get.offAndToNamed(Routes.kHome)),
                   )
                 ],
@@ -152,7 +145,7 @@ class _HomeViewState extends State<HomeView> {
                                                 const CircularProgressIndicator(
                                               valueColor:
                                                   AlwaysStoppedAnimation(
-                                                AzTheme.red,
+                                                AzColors.red,
                                               ),
                                             ),
                                           ),
@@ -166,7 +159,7 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ),
                             Container(
-                              color: AzTheme.whiteSmoke,
+                              color: AzColors.whiteSmoke,
                               height: 56,
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(vertical: 21),
@@ -179,14 +172,9 @@ class _HomeViewState extends State<HomeView> {
                                     height: 30,
                                   ),
                                   const SizedBox(width: 16),
-                                  const Text(
+                                  Text(
                                     '® Desenvolvido por Azape',
-                                    style: TextStyle(
-                                      fontFamily: 'NunitoSans',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: AzTheme.blueGray,
-                                    ),
+                                    style: AzTypography.nunitoBlueGray,
                                   ),
                                   const SizedBox(width: 48),
                                 ],
@@ -227,14 +215,9 @@ class _HomeViewState extends State<HomeView> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  const Text(
+                                  Text(
                                     'Olá,',
-                                    style: TextStyle(
-                                      fontFamily: 'NunitoSans',
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: AzTheme.deepBlueGray,
-                                    ),
+                                    style: AzTypography.nunitodeepBlueGray,
                                   ),
                                   Obx(
                                     () => Text(
@@ -243,7 +226,7 @@ class _HomeViewState extends State<HomeView> {
                                           .first,
                                       style: const TextStyle(
                                         fontFamily: 'NunitoSans',
-                                        color: Color(0xff59666F),
+                                        color: AzColors.deepBlueGray,
                                         fontSize: 19,
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -257,7 +240,7 @@ class _HomeViewState extends State<HomeView> {
                                 height: 40,
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AzTheme.red,
+                                  color: AzColors.red,
                                 ),
                                 child: const Center(
                                   child: Icon(

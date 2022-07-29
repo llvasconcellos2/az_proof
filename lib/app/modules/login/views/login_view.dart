@@ -53,7 +53,7 @@ class _LoginViewState extends State<LoginView> {
                                 'E-mail',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: AzTheme.red,
+                                  color: AzColors.red,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -64,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                                 focusNode: controller.emailFocus,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
-                                cursorColor: AzTheme.red,
+                                cursorColor: AzColors.red,
                                 validator: (value) =>
                                     controller.validateEmail(value ?? ''),
                                 onChanged: (value) =>
@@ -88,19 +88,19 @@ class _LoginViewState extends State<LoginView> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: AzTheme.whiteGray,
+                                      color: AzColors.whiteGray,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: AzTheme.red,
+                                      color: AzColors.red,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: AzTheme.deepRed,
+                                      color: AzColors.deepRed,
                                     ),
                                   ),
                                   suffixIcon: Icon(
@@ -109,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                                         : null,
                                     color: !controller.checkEmailError
                                         ? null
-                                        : AzTheme.deepRed,
+                                        : AzColors.deepRed,
                                     size: 20,
                                   ),
                                 ),
@@ -124,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                                 'Senha',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: AzTheme.red,
+                                  color: AzColors.red,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -144,7 +144,7 @@ class _LoginViewState extends State<LoginView> {
                                   setState(() {});
                                 },
                                 keyboardType: TextInputType.visiblePassword,
-                                cursorColor: AzTheme.red,
+                                cursorColor: AzColors.red,
                                 enabled: !controller.loading,
                                 decoration: InputDecoration(
                                   hintText: '•••••••••',
@@ -160,19 +160,19 @@ class _LoginViewState extends State<LoginView> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: AzTheme.whiteGray,
+                                      color: AzColors.whiteGray,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: AzTheme.red,
+                                      color: AzColors.red,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: AzTheme.deepRed,
+                                      color: AzColors.deepRed,
                                     ),
                                   ),
                                   suffixIcon: !controller.checkPasswordError
@@ -196,13 +196,13 @@ class _LoginViewState extends State<LoginView> {
                                             color: !controller
                                                     .passwordFocus.hasFocus
                                                 ? Colors.grey.shade600
-                                                : AzTheme.red,
+                                                : AzColors.red,
                                             size: 20,
                                           ),
                                         )
                                       : const Icon(
                                           PhosphorIcons.x_circle_fill,
-                                          color: AzTheme.deepRed,
+                                          color: AzColors.deepRed,
                                           size: 20,
                                         ),
                                 ),
@@ -242,7 +242,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                    AzTheme.red,
+                                    AzColors.red,
                                   ),
                                   fixedSize: MaterialStateProperty.all<Size>(
                                     const Size.fromHeight(48),
@@ -287,7 +287,7 @@ class _LoginViewState extends State<LoginView> {
                   '® Desenvolvido por Azape',
                   style: TextStyle(
                     fontSize: 12,
-                    color: AzTheme.violet,
+                    color: AzColors.violet,
                   ),
                 ),
               ),

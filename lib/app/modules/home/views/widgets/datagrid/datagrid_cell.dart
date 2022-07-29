@@ -16,7 +16,7 @@ class DataGridCell extends StatelessWidget {
   DataGridCell(
     this.content, {
     this.bgColor = Colors.transparent,
-    this.textColor = AzTheme.deepBlueGray,
+    this.textColor = AzColors.deepBlueGray,
     this.isHeader = false,
     this.isFooter = false,
     this.isFirst = false,
@@ -31,7 +31,7 @@ class DataGridCell extends StatelessWidget {
     );
 
     var borderSide = BorderSide(
-      color: isHeader ? AzTheme.red : AzTheme.whiteSmoke,
+      color: isHeader ? AzColors.red : AzColors.whiteSmoke,
       style: BorderStyle.solid,
       width: 1,
     );
