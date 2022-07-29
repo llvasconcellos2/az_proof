@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../../az_theme.dart';
+part of 'datagrid.dart';
 
 class DataGridCell extends StatelessWidget {
   final String content;

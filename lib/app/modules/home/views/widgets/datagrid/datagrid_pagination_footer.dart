@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:intl/intl.dart';
-
-import '../../../../../az_theme.dart';
+part of 'datagrid.dart';
 
 class DataGridPaginationFooter extends StatelessWidget {
   const DataGridPaginationFooter({Key? key}) : super(key: key);

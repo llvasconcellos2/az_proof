@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../../utils.dart';
 import '../../../data/models/dashboard_model.dart';
 import '../../../data/preferences/user_preferences.dart';
 import '../../../data/providers/dashboard_provider.dart';
@@ -8,20 +9,23 @@ class HomeController extends GetxController {
   final user = UserPreferences().obs;
   final userName = ''.obs;
   final DashboardProvider dashboardProvider;
-  late DashboardModel dashboardData;
+  DashboardModel dashboardData = DashboardModel();
 
   final _loading = false.obs;
   bool get loading => _loading.value;
   set loading(bool value) => _loading.value = value;
-
-  String get error => dashboardProvider.error;
 
   HomeController(this.dashboardProvider);
 
   @override
   void onInit() async {
     await getName();
+    dashboardProvider.error.listen((error) {
+      Utils.showSnackbar(error);
+    });
+    loading = true;
     dashboardData = await dashboardProvider.getAll();
+    loading = false;
     super.onInit();
   }
 
@@ -29,10 +33,7 @@ class HomeController extends GetxController {
     userName.value = await user.value.getName();
   }
 
-  Future<bool> getData() async {
-    loading = true;
-    dashboardData = await dashboardProvider.getAll();
-    loading = false;
-    return true;
+  Future<DashboardModel> getData() async {
+    return await dashboardProvider.getAll();
   }
 }

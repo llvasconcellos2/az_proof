@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 import 'package:html/parser.dart';
 
 import '../preferences/user_preferences.dart';
@@ -14,7 +15,7 @@ class AzApi {
     headers: {'Content-Type': 'application/json'},
   );
 
-  String error = '';
+  RxString error = ''.obs;
 
   static String? _token;
   static set token(String? value) {
@@ -42,8 +43,9 @@ class AzApi {
     request.interceptors.add(InterceptorsWrapper(onRequest: (options, handler) {
       if (_token != null) {
         options = options.copyWith(
-            headers: Map<String, dynamic>.from(options.headers)
-              ..addAll({'Authorization': 'Bearer $_token'}));
+          headers: Map<String, dynamic>.from(options.headers)
+            ..addAll({'Authorization': 'Bearer $_token'}),
+        );
       }
       handler.next(options);
     }, onResponse: (response, handler) {
@@ -51,19 +53,19 @@ class AzApi {
         return handler.next(response);
       } else if (response.statusCode == 404) {
         // When statusCode is 400 response is HTML
-        error = extractMessageFromHTML(response.data);
+        error.value = extractMessageFromHTML(response.data);
       } else {
         if (response.data['error']) {
-          error = response.data['message'];
+          error.value = response.data['message'];
         }
       }
       handler.reject(DioError(
-        error: error,
+        error: error.value,
         requestOptions: response.requestOptions,
         type: DioErrorType.response,
       ));
     }, onError: (DioError e, handler) {
-      error = e.message;
+      error.value = e.message;
       return handler.next(e); //continue
     }));
   }

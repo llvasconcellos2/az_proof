@@ -1,23 +1,22 @@
 import 'package:az_proof/app/az_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../../utils.dart';
 import '../../../controllers/home_controller.dart';
-import 'datagrid_cell.dart';
-import 'datagrid_header.dart';
-import 'datagrid_pagination_footer.dart';
 
-class DataGrid extends StatefulWidget {
-  const DataGrid({Key? key}) : super(key: key);
+part 'datagrid_cell.dart';
+part 'datagrid_header.dart';
+part 'datagrid_pagination_footer.dart';
 
-  @override
-  State<DataGrid> createState() => _DataGridState();
-}
-
-class _DataGridState extends State<DataGrid> {
+class DataGrid extends StatelessWidget {
   final controller = Get.find<HomeController>();
+  final RxInt pageNumber = 1.obs;
+  final RxInt recordsPerPage = 6.obs;
+
+  DataGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

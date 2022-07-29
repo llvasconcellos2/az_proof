@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 
 import '../models/dashboard_model.dart';
 import 'az_api.dart';
@@ -6,7 +7,7 @@ import 'az_api.dart';
 class DashboardProvider {
   final AzApi api = AzApi();
 
-  String get error => api.error;
+  RxString get error => api.error;
 
   Future<DashboardModel> getAll() async {
     try {

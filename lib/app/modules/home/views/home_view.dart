@@ -3,7 +3,6 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../../utils.dart';
 import '../../../az_theme.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
@@ -118,7 +117,10 @@ class _HomeViewState extends State<HomeView> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Obx(() {
-                                      if (!controller.loading) {
+                                      if (!controller.loading &&
+                                          controller.dashboardData
+                                                  .averageTicket !=
+                                              null) {
                                         return Totals();
                                       } else {
                                         return const SizedBox();
@@ -126,13 +128,6 @@ class _HomeViewState extends State<HomeView> {
                                     }),
                                     const SizedBox(height: 24),
                                     Obx(() {
-                                      if (controller.error != '') {
-                                        Future.delayed(
-                                            const Duration(milliseconds: 500),
-                                            () {
-                                          Utils.showSnackbar(controller.error);
-                                        });
-                                      }
                                       if (controller.loading) {
                                         var size =
                                             MediaQuery.of(context).size.height *
@@ -150,8 +145,12 @@ class _HomeViewState extends State<HomeView> {
                                             ),
                                           ),
                                         );
+                                      } else if (controller
+                                              .dashboardData.averageTicket !=
+                                          null) {
+                                        return DataGrid();
                                       } else {
-                                        return const DataGrid();
+                                        return const SizedBox();
                                       }
                                     }),
                                   ],

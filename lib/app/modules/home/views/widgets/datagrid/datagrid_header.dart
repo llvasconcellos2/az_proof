@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../../../../../az_theme.dart';
-import 'datagrid_cell.dart';
+part of 'datagrid.dart';
 
 class DataGridHeader extends TableRow {
   final List<String> content;
