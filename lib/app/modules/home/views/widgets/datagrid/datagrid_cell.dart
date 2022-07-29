@@ -55,13 +55,16 @@ class DataGridCell extends StatelessWidget {
           alignment: Alignment.centerLeft,
           height: 56,
           padding: const EdgeInsets.all(8),
-          child: Text(
-            content,
-            style: TextStyle(
-              color: textColor,
-              fontFamily: 'NunitoSans',
-              fontWeight: FontWeight.w400,
-              fontSize: isHeader ? 14 : 12,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.text,
+            child: SelectableText(
+              content,
+              style: TextStyle(
+                color: textColor,
+                fontFamily: 'NunitoSans',
+                fontWeight: FontWeight.w400,
+                fontSize: isHeader ? 14 : 12,
+              ),
             ),
           ),
         ),

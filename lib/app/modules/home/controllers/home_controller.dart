@@ -15,6 +15,23 @@ class HomeController extends GetxController {
   bool get loading => _loading.value;
   set loading(bool value) => _loading.value = value;
 
+  final RxInt _pageNumber = 1.obs;
+  int get pageNumber => _pageNumber.value;
+  set pageNumber(int value) {
+    if (value >= 1 && value <= totalPages.value) {
+      _pageNumber.value = value;
+    }
+  }
+
+  final RxInt totalPages = 0.obs;
+
+  final RxInt _recordsPerPage = 6.obs;
+  int get recordsPerPage => _recordsPerPage.value;
+  set recordsPerPage(int value) {
+    totalPages.value = (dashboardData.orders!.length / value).ceil();
+    _recordsPerPage.value = value;
+  }
+
   HomeController(this.dashboardProvider);
 
   @override
@@ -25,6 +42,7 @@ class HomeController extends GetxController {
     });
     loading = true;
     dashboardData = await dashboardProvider.getAll();
+    totalPages.value = (dashboardData.orders!.length / recordsPerPage).ceil();
     loading = false;
     super.onInit();
   }

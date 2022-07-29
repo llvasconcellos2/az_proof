@@ -13,10 +13,59 @@ part 'datagrid_pagination_footer.dart';
 
 class DataGrid extends StatelessWidget {
   final controller = Get.find<HomeController>();
-  final RxInt pageNumber = 1.obs;
-  final RxInt recordsPerPage = 6.obs;
 
   DataGrid({Key? key}) : super(key: key);
+
+  List<TableRow> buildRows() {
+    List<TableRow> rows = [
+      DataGridHeader(content: const [
+        'ID Pedido',
+        'Data Criação',
+        'Nome do Cliente',
+        'CPF/CNPJ Cliente',
+        'Status Pedido',
+        'Status Pagamento',
+        'Método Pagamento',
+        'Total',
+      ]),
+    ];
+    var start = (controller.pageNumber - 1) * controller.recordsPerPage;
+    //if(start ==)
+    var end = start + controller.recordsPerPage;
+    if (end > controller.dashboardData.orders!.length) {
+      end = controller.dashboardData.orders!.length;
+    }
+    for (var i = start; i < end; i++) {
+      var order = controller.dashboardData.orders![i];
+      rows.add(TableRow(children: [
+        DataGridCell(
+          '#${order.sId!}',
+          isFirst: true,
+          bgColor: Colors.white,
+        ),
+        DataGridCell(DateFormat('dd/MM/y').format(order.createdAt!)),
+        DataGridCell(
+          order.customer!.name!,
+          bgColor: Colors.white,
+        ),
+        DataGridCell(Utils.cpfCnpjFormat(order.customer!.doc!)),
+        DataGridCell(
+          Utils.orderStatusFormat(order.status!),
+          bgColor: Colors.white,
+        ),
+        DataGridCell(Utils.paymentStatusFormat(order.payment!.status!)),
+        DataGridCell(
+          Utils.paymentMethodFormat(order.payment!.method!),
+          bgColor: Colors.white,
+        ),
+        DataGridCell(
+            NumberFormat.simpleCurrency(locale: 'pt_BR')
+                .format(order.payment!.amount!),
+            isLast: true),
+      ]));
+    }
+    return rows;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,66 +84,30 @@ class DataGrid extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        Table(
-          border: const TableBorder(
-            horizontalInside: BorderSide(
-              width: 1,
-              color: AzColors.whiteSmoke,
-              style: BorderStyle.solid,
+        Obx(
+          () => Table(
+            border: const TableBorder(
+              horizontalInside: BorderSide(
+                width: 1,
+                color: AzColors.whiteSmoke,
+                style: BorderStyle.solid,
+              ),
             ),
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            defaultColumnWidth: const FlexColumnWidth(),
+            columnWidths: const <int, TableColumnWidth>{
+              0: FixedColumnWidth(170),
+              1: FixedColumnWidth(110),
+              3: FixedColumnWidth(160),
+              4: FixedColumnWidth(120),
+              5: FixedColumnWidth(140),
+              6: FixedColumnWidth(150),
+              7: FixedColumnWidth(140),
+            },
+            children: buildRows(),
           ),
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          defaultColumnWidth: const FlexColumnWidth(),
-          columnWidths: const <int, TableColumnWidth>{
-            0: FixedColumnWidth(170),
-            1: FixedColumnWidth(110),
-            3: FixedColumnWidth(160),
-            4: FixedColumnWidth(120),
-            5: FixedColumnWidth(140),
-            6: FixedColumnWidth(150),
-            7: FixedColumnWidth(140),
-          },
-          children: <TableRow>[
-            DataGridHeader(content: const [
-              'ID Pedido',
-              'Data Criação',
-              'Nome do Cliente',
-              'CPF/CNPJ Cliente',
-              'Status Pedido',
-              'Status Pagamento',
-              'Método Pagamento',
-              'Total',
-            ]),
-            for (var order in controller.dashboardData.orders!)
-              TableRow(children: [
-                DataGridCell(
-                  '#${order.sId!}',
-                  isFirst: true,
-                  bgColor: Colors.white,
-                ),
-                DataGridCell(DateFormat('dd/MM/y').format(order.createdAt!)),
-                DataGridCell(
-                  order.customer!.name!,
-                  bgColor: Colors.white,
-                ),
-                DataGridCell(Utils.cpfCnpjFormat(order.customer!.doc!)),
-                DataGridCell(
-                  Utils.orderStatusFormat(order.status!),
-                  bgColor: Colors.white,
-                ),
-                DataGridCell(Utils.paymentStatusFormat(order.payment!.status!)),
-                DataGridCell(
-                  Utils.paymentMethodFormat(order.payment!.method!),
-                  bgColor: Colors.white,
-                ),
-                DataGridCell(
-                    NumberFormat.simpleCurrency(locale: 'pt_BR')
-                        .format(order.payment!.amount!),
-                    isLast: true),
-              ]),
-          ],
         ),
-        const DataGridPaginationFooter(),
+        DataGridPaginationFooter(),
       ],
     );
   }
