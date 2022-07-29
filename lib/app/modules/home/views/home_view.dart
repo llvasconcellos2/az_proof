@@ -4,9 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils.dart';
+import '../../../az_theme.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
-import 'widgets/datagrid.dart';
+import 'widgets/datagrid/datagrid.dart';
 import 'widgets/totals.dart';
 
 class HomeView extends StatefulWidget {
@@ -61,16 +62,16 @@ class _HomeViewState extends State<HomeView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: ListTile(
-                        textColor: const Color(0xFF8F95B2),
-                        iconColor: const Color(0xFF8F95B2),
+                        textColor: AzTheme.red,
+                        iconColor: AzTheme.red,
                         selected: true,
                         selectedColor: Colors.white,
-                        selectedTileColor: const Color(0xFFFE7C6E),
+                        selectedTileColor: AzTheme.red,
                         horizontalTitleGap: 0,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                           side: const BorderSide(
-                            color: Color(0xFFF5F5F5),
+                            color: AzTheme.whiteSmoke,
                           ),
                         ),
                         leading: SvgPicture.asset(
@@ -151,7 +152,7 @@ class _HomeViewState extends State<HomeView> {
                                                 const CircularProgressIndicator(
                                               valueColor:
                                                   AlwaysStoppedAnimation(
-                                                Color(0xFFFE7C6E),
+                                                AzTheme.red,
                                               ),
                                             ),
                                           ),
@@ -165,7 +166,7 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ),
                             Container(
-                              color: const Color(0xffF5F5F5),
+                              color: AzTheme.whiteSmoke,
                               height: 56,
                               width: double.infinity,
                               padding: const EdgeInsets.symmetric(vertical: 21),
@@ -184,7 +185,7 @@ class _HomeViewState extends State<HomeView> {
                                       fontFamily: 'NunitoSans',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14,
-                                      color: Color(0xFF97A1A8),
+                                      color: AzTheme.blueGray,
                                     ),
                                   ),
                                   const SizedBox(width: 48),
@@ -232,7 +233,7 @@ class _HomeViewState extends State<HomeView> {
                                       fontFamily: 'NunitoSans',
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14,
-                                      color: Color(0xff59666F),
+                                      color: AzTheme.deepBlueGray,
                                     ),
                                   ),
                                   Obx(
@@ -256,7 +257,7 @@ class _HomeViewState extends State<HomeView> {
                                 height: 40,
                                 decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: Color(0xFFFE7C6E),
+                                  color: AzTheme.red,
                                 ),
                                 child: const Center(
                                   child: Icon(

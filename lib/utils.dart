@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:az_proof/app/az_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -70,7 +69,7 @@ class Utils {
         title: 'Aviso',
         message: message,
         snackPosition: SnackPosition.TOP,
-        backgroundColor: const Color(0xFFFBB03B),
+        backgroundColor: AzTheme.orange,
         icon: const Icon(
           Icons.warning,
           color: Colors.white,

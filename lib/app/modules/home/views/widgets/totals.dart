@@ -1,3 +1,4 @@
+import 'package:az_proof/app/az_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,8 @@ class Totals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
           'Resumo da atividade',
@@ -18,7 +21,7 @@ class Totals extends StatelessWidget {
             fontFamily: 'NunitoSans',
             fontWeight: FontWeight.w400,
             fontSize: 19,
-            color: Color(0xFF59666F),
+            color: AzTheme.deepBlueGray,
             height: 1.2,
           ),
         ),
@@ -27,21 +30,21 @@ class Totals extends StatelessWidget {
           children: [
             TotalsCard(
               icon: 'pedidos_dash.svg',
-              iconColor: const Color(0xFFF4C8E1),
+              iconColor: AzTheme.lightPink,
               description: '${controller.dashboardData.ordersCount} Pedidos',
               amount: controller.dashboardData.ordersTotal!,
             ),
             const SizedBox(width: 16),
             TotalsCard(
               icon: 'vendas.svg',
-              iconColor: const Color(0xFFB6EEDD),
+              iconColor: AzTheme.lightGreen,
               description: '${controller.dashboardData.salesCount} Vendas',
               amount: controller.dashboardData.salesTotal!,
             ),
             const SizedBox(width: 16),
             TotalsCard(
               icon: 'calculo.svg',
-              iconColor: const Color(0xFFC3E7F3),
+              iconColor: AzTheme.lightCyan,
               description: 'Ticket médio',
               amount: controller.dashboardData.averageTicket!,
             ),

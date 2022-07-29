@@ -1,3 +1,4 @@
+import 'package:az_proof/app/az_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -47,7 +48,7 @@ class TotalsCard extends StatelessWidget {
                   fontFamily: 'NunitoSans',
                   fontWeight: FontWeight.w400,
                   fontSize: 19,
-                  color: Color(0xFF59666F),
+                  color: AzTheme.deepBlueGray,
                   height: 1.2,
                 ),
               ),
@@ -58,7 +59,7 @@ class TotalsCard extends StatelessWidget {
                   fontFamily: 'NunitoSans',
                   fontWeight: FontWeight.w700,
                   fontSize: 19,
-                  color: Color(0xFF59666F),
+                  color: AzTheme.deepBlueGray,
                   height: 1.2,
                 ),
               ),

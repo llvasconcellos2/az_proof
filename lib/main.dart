@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'app/az_theme.dart';
 import 'app/data/preferences/user_preferences.dart';
 import 'app/routes/app_pages.dart';
 
@@ -18,7 +19,7 @@ void main() async {
       getPages: AppPages.routes,
       theme: ThemeData(
         fontFamily: 'Nunito Sans',
-        appBarTheme: const AppBarTheme(color: Color(0xFFFE7C6E)),
+        appBarTheme: const AppBarTheme(color: AzTheme.red),
       ),
       defaultTransition: Transition.noTransition,
       transitionDuration: const Duration(seconds: 0),

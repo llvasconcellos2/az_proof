@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils.dart';
+import '../../../az_theme.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
@@ -52,7 +53,7 @@ class _LoginViewState extends State<LoginView> {
                                 'E-mail',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Color(0xFFFE7C6E),
+                                  color: AzTheme.red,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -63,7 +64,7 @@ class _LoginViewState extends State<LoginView> {
                                 focusNode: controller.emailFocus,
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
-                                cursorColor: const Color(0xFFFE7C6E),
+                                cursorColor: AzTheme.red,
                                 validator: (value) =>
                                     controller.validateEmail(value ?? ''),
                                 onChanged: (value) =>
@@ -87,19 +88,19 @@ class _LoginViewState extends State<LoginView> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: Color(0xFFE6E6E6),
+                                      color: AzTheme.whiteGray,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: Color(0xFFFE7C6E),
+                                      color: AzTheme.red,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: Color(0xFFE30F0F),
+                                      color: AzTheme.deepRed,
                                     ),
                                   ),
                                   suffixIcon: Icon(
@@ -108,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                                         : null,
                                     color: !controller.checkEmailError
                                         ? null
-                                        : const Color(0xFFE30F0F),
+                                        : AzTheme.deepRed,
                                     size: 20,
                                   ),
                                 ),
@@ -123,7 +124,7 @@ class _LoginViewState extends State<LoginView> {
                                 'Senha',
                                 style: TextStyle(
                                   fontSize: 14,
-                                  color: Color(0xFFFE7C6E),
+                                  color: AzTheme.red,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -143,7 +144,7 @@ class _LoginViewState extends State<LoginView> {
                                   setState(() {});
                                 },
                                 keyboardType: TextInputType.visiblePassword,
-                                cursorColor: const Color(0xFFFE7C6E),
+                                cursorColor: AzTheme.red,
                                 enabled: !controller.loading,
                                 decoration: InputDecoration(
                                   hintText: '•••••••••',
@@ -159,19 +160,19 @@ class _LoginViewState extends State<LoginView> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: Color(0xFFE6E6E6),
+                                      color: AzTheme.whiteGray,
                                     ),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: Color(0xFFFE7C6E),
+                                      color: AzTheme.red,
                                     ),
                                   ),
                                   errorBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
-                                      color: Color(0xFFE30F0F),
+                                      color: AzTheme.deepRed,
                                     ),
                                   ),
                                   suffixIcon: !controller.checkPasswordError
@@ -195,13 +196,13 @@ class _LoginViewState extends State<LoginView> {
                                             color: !controller
                                                     .passwordFocus.hasFocus
                                                 ? Colors.grey.shade600
-                                                : const Color(0xFFFE7C6E),
+                                                : AzTheme.red,
                                             size: 20,
                                           ),
                                         )
                                       : const Icon(
                                           PhosphorIcons.x_circle_fill,
-                                          color: Color(0xFFE30F0F),
+                                          color: AzTheme.deepRed,
                                           size: 20,
                                         ),
                                 ),
@@ -241,7 +242,7 @@ class _LoginViewState extends State<LoginView> {
                                   ),
                                   backgroundColor:
                                       MaterialStateProperty.all<Color>(
-                                    const Color(0xFFFE7C6E),
+                                    AzTheme.red,
                                   ),
                                   fixedSize: MaterialStateProperty.all<Size>(
                                     const Size.fromHeight(48),
@@ -286,7 +287,7 @@ class _LoginViewState extends State<LoginView> {
                   '® Desenvolvido por Azape',
                   style: TextStyle(
                     fontSize: 12,
-                    color: Color(0xFF8F95B2),
+                    color: AzTheme.violet,
                   ),
                 ),
               ),
