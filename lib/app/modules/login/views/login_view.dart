@@ -3,6 +3,7 @@ import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/login_controller.dart';
 
@@ -226,27 +227,7 @@ class _LoginViewState extends State<LoginView> {
                                     if (response) {
                                       Get.offAndToNamed(Routes.kHome);
                                     } else {
-                                      Get.showSnackbar(
-                                        GetSnackBar(
-                                          title: 'Aviso',
-                                          message: controller.error,
-                                          snackPosition: SnackPosition.TOP,
-                                          backgroundColor:
-                                              const Color(0xFFFBB03B),
-                                          icon: const Icon(
-                                            Icons.warning,
-                                            color: Colors.white,
-                                          ),
-                                          isDismissible: true,
-                                          duration: const Duration(seconds: 4),
-                                          padding: const EdgeInsets.only(
-                                            top: 16,
-                                            left: 32,
-                                            right: 32,
-                                            bottom: 16,
-                                          ),
-                                        ),
-                                      );
+                                      Utils.showSnackbar(controller.error);
                                     }
                                     controller.loading = false;
                                   }

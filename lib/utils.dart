@@ -1,3 +1,8 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 class Utils {
   static String cpfCnpjFormat(String docNumber) {
     var badChars = RegExp(r'/[^\d]/g');
@@ -57,5 +62,28 @@ class Utils {
       default:
         return input;
     }
+  }
+
+  static void showSnackbar(String message) {
+    Get.showSnackbar(
+      GetSnackBar(
+        title: 'Aviso',
+        message: message,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: const Color(0xFFFBB03B),
+        icon: const Icon(
+          Icons.warning,
+          color: Colors.white,
+        ),
+        isDismissible: true,
+        duration: const Duration(seconds: 4),
+        padding: const EdgeInsets.only(
+          top: 16,
+          left: 32,
+          right: 32,
+          bottom: 16,
+        ),
+      ),
+    );
   }
 }

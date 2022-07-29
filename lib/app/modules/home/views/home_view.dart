@@ -3,10 +3,11 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 import 'widgets/datagrid.dart';
-import 'widgets/totals_card.dart';
+import 'widgets/totals.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -122,86 +123,26 @@ class _HomeViewState extends State<HomeView> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Text(
-                                      'Resumo da atividade',
-                                      style: TextStyle(
-                                        fontFamily: 'NunitoSans',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 19,
-                                        color: Color(0xFF59666F),
-                                        height: 1.2,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 24),
-                                    Row(
-                                      children: const [
-                                        TotalsCard(
-                                          icon: 'pedidos_dash.svg',
-                                          iconColor: Color(0xFFF4C8E1),
-                                          description: '200 Pedidos',
-                                          amount: 'R\$ 50.480,95',
-                                        ),
-                                        SizedBox(width: 16),
-                                        TotalsCard(
-                                          icon: 'vendas.svg',
-                                          iconColor: Color(0xFFB6EEDD),
-                                          description: '156 Vendas',
-                                          amount: 'R\$ 35.996,42',
-                                        ),
-                                        SizedBox(width: 16),
-                                        TotalsCard(
-                                          icon: 'calculo.svg',
-                                          iconColor: Color(0xFFC3E7F3),
-                                          description: 'Ticket médio',
-                                          amount: 'R\$ 230,74',
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 24),
-                                    const Text(
-                                      'Pedidos',
-                                      style: TextStyle(
-                                        fontFamily: 'NunitoSans',
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 19,
-                                        color: Color(0xFF59666F),
-                                        height: 1.2,
-                                      ),
-                                    ),
+                                    Obx(() {
+                                      if (!controller.loading) {
+                                        return Totals();
+                                      } else {
+                                        return const SizedBox();
+                                      }
+                                    }),
                                     const SizedBox(height: 24),
                                     Obx(() {
                                       if (controller.error != '') {
                                         Future.delayed(
                                             const Duration(milliseconds: 500),
                                             () {
-                                          Get.showSnackbar(
-                                            GetSnackBar(
-                                              title: 'Aviso',
-                                              message: controller.error,
-                                              snackPosition: SnackPosition.TOP,
-                                              backgroundColor:
-                                                  const Color(0xFFFBB03B),
-                                              icon: const Icon(
-                                                Icons.warning,
-                                                color: Colors.white,
-                                              ),
-                                              isDismissible: true,
-                                              duration:
-                                                  const Duration(seconds: 4),
-                                              padding: const EdgeInsets.only(
-                                                top: 16,
-                                                left: 32,
-                                                right: 32,
-                                                bottom: 16,
-                                              ),
-                                            ),
-                                          );
+                                          Utils.showSnackbar(controller.error);
                                         });
                                       }
                                       if (controller.loading) {
                                         var size =
                                             MediaQuery.of(context).size.height *
-                                                0.4;
+                                                0.2;
                                         return Center(
                                           child: SizedBox(
                                             height: size,

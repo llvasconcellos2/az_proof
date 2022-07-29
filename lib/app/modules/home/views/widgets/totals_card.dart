@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 class TotalsCard extends StatelessWidget {
   final String icon;
   final Color iconColor;
   final String description;
-  final String amount;
+  final double amount;
 
   const TotalsCard({
     Key? key,
@@ -52,7 +53,7 @@ class TotalsCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                amount,
+                NumberFormat.simpleCurrency(locale: 'pt_BR').format(amount),
                 style: const TextStyle(
                   fontFamily: 'NunitoSans',
                   fontWeight: FontWeight.w700,

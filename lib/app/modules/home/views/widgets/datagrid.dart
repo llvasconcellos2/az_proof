@@ -20,6 +20,17 @@ class _DataGridState extends State<DataGrid> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const Text(
+          'Pedidos',
+          style: TextStyle(
+            fontFamily: 'NunitoSans',
+            fontWeight: FontWeight.w400,
+            fontSize: 19,
+            color: Color(0xFF59666F),
+            height: 1.2,
+          ),
+        ),
+        const SizedBox(height: 24),
         Table(
           border: const TableBorder(
             horizontalInside: BorderSide(
