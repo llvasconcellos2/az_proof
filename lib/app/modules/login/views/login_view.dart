@@ -221,17 +221,17 @@ class _LoginViewState extends State<LoginView> {
                                   controller.submit();
                                 },
                                 style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
+                                  shape: WidgetStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                   ),
                                   backgroundColor:
-                                      MaterialStateProperty.all<Color>(
+                                      WidgetStateProperty.all<Color>(
                                     AzColors.red,
                                   ),
-                                  fixedSize: MaterialStateProperty.all<Size>(
+                                  fixedSize: WidgetStateProperty.all<Size>(
                                     const Size.fromHeight(48),
                                   ),
                                 ),
@@ -271,7 +271,7 @@ class _LoginViewState extends State<LoginView> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '® Desenvolvido por Azape',
+                  '® Desenvolvido por Leonardo Lima de Vasconcellos',
                   style: TextStyle(
                     fontSize: 12,
                     color: AzColors.violet,

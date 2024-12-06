@@ -210,7 +210,7 @@ class _HomeViewState extends State<HomeView> {
                                   ),
                                   const SizedBox(width: 16),
                                   Text(
-                                    '® Desenvolvido por Azape',
+                                    '® Desenvolvido por Leonardo Lima de Vasconcellos',
                                     style: AzTypography.nunitoBlueGray,
                                   ),
                                 ],
@@ -253,6 +253,10 @@ class _HomeViewState extends State<HomeView> {
                                 children: [
                                   Text(
                                     'Olá,',
+                                    style: AzTypography.nunitodeepBlueGray,
+                                  ),
+                                  Text(
+                                    'Leonardo',
                                     style: AzTypography.nunitodeepBlueGray,
                                   ),
                                   Obx(
